@@ -162,7 +162,7 @@ ECC memory systems protect against soft errors caused by cosmic ray-induced neut
 
 
 
-### Gemini 3 Pro (improved version using Multi-Agent by Vinayak Patel):
+### Gemini 3 Pro (improved version using multi-agent by Vinayak Patel):
 
 1. **Core Definition**
 Error-correcting codes (ECC) are information-theoretic methods used to ensure data integrity across noisy communication channels or imperfect storage media. They function by appending calculated redundancy to the original information bits, allowing the receiver to detect and reconstruct corrupted data without requesting retransmission. The efficacy of an ECC scheme is defined by its code rate and the minimum Hamming distance ($d_{\min}$) between valid codewords, which determines the theoretical limit of detectable and correctable errors.
