@@ -74,10 +74,10 @@ The receiver validates the data by computing a syndrome vector $S$ using the rec
 ECC is fundamental to the operation of NAND flash memory found in Solid State Drives (SSDs). Flash memory cells are susceptible to charge leakage and read disturb effects, which cause random bit flips. SSD controllers employ Low-Density Parity-Check (LDPC) codes to monitor and correct these errors in real-time. This process ensures that data retrieved from the drive remains identical to the data originally written, despite the physical degradation of the storage medium.
 
 4. **Common Misconceptions (Corrected)**
-1.  **Misconception:** ECC guarantees 100% data reliability.
+   1.  **Misconception:** ECC guarantees 100% data reliability.
     **Correction:** ECC can only correct a finite number of errors determined by the code's minimum Hamming distance. If the number of corrupted bits exceeds this mathematical threshold, the system will fail to recover the data or may introduce false corrections.
 
-2.  **Misconception:** Redundancy implies simple data duplication.
+   2.  **Misconception:** Redundancy implies simple data duplication.
     **Correction:** Redundancy in ECC involves calculating parity bits based on linear combinations of the original data, not merely copying it. This mathematical structure allows for the correction of multiple errors with significantly less overhead than simple repetition requires.
 
 
@@ -175,10 +175,10 @@ $$t \leq \lfloor (d_{\min}-1)/2 \rfloor$$
 ECC is fundamental to the operation of NAND flash memory in Solid State Drives (SSDs). Flash memory cells are susceptible to charge leakage and read disturb effects, which cause random bit flips. SSD controllers employ Low-Density Parity-Check (LDPC) codes to monitor and correct these errors in real-time. This process preserves data integrity by recovering the original information from noisy readouts, provided the error rate remains within the code's correction capability.
 
 4. **Common Misconceptions (Corrected)**
-1.  **Misconception:** ECC guarantees 100% data reliability.
+   1.  **Misconception:** ECC guarantees 100% data reliability.
     **Correction:** ECC efficacy is strictly bounded by the minimum Hamming distance. If the number of corrupted bits exceeds the code's correction threshold, the system will fail to recover the data or may introduce miscorrections.
 
-2.  **Misconception:** Redundancy implies simple data duplication.
+   2.  **Misconception:** Redundancy implies simple data duplication.
     **Correction:** Redundancy in ECC involves calculating parity bits based on linear combinations of the original data, not merely copying it. This algebraic structure allows for the correction of multiple errors with significantly less overhead than simple repetition requires.
 
 
