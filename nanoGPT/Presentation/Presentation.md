@@ -104,7 +104,7 @@ The table shows that **CustomV2** achieves the lowest validation loss at both 6 
 
 ---
 
-## Critical Recommendation 
+## Recommendation 
 
 With early stopping enabled, **CustomV2** provides the most reliable validation checkpoints in medium and deep architectures. While **CustomV3** offers improved resistance to overfitting in longer training regimes and a more gradual learning curve, this advantage is largely neutralized when training is stopped at optimal validation points.
 
@@ -114,6 +114,7 @@ With early stopping enabled, **CustomV2** provides the most reliable validation 
 Source Log Files:
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
+
 
 
 
