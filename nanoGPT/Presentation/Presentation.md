@@ -5,12 +5,12 @@ We evaluated four activation functions across multiple model depths, measuring t
 
 ## Activation Function Performance Overview (Early Stop Implemented)
 
-| Activation | 4-Layer Val<br>(2000 iters) | 6-Layer Val<br>(4000 iters) | 8-Layer Val<br>(2000 iters) | 12-Layer Val<br>(8000 iters) | Winner Count |
+| Activation | 4-Layer Val<br>(2000 iters) | 8-Layer Val<br>(2000 iters) | 6-Layer Val<br>(4000 iters) | 12-Layer Val<br>(8000 iters) | Winner Count |
 |------------|-------------------|-------------------|-------------------|---------------------|--------------|
-| **SwiGLU** | **1.8176** ✓ (step 2000) | 1.5146 (step 4000) | **1.5169** ✓ (step 2000) | 1.5267 (step 2500) | **2** |
-| **CustomV2** | 1.8437 (step 2000) | **1.4887** ✓ (step 4000) | 1.5397 (step 2000) | **1.5246** ✓ (step 2500) | **2** |
-| **CustomV3** | 1.8687 (step 2000) | 1.4914 (step 4000) | 1.5449 (step 2000) | 1.5485 (step 3500) | **0** |
-| **GELU** | 1.9061 (step 2000) | 1.5025 (step 4000) | 1.5411 (step 2000) | 1.5281 (step 2500) | **0** |
+| **SwiGLU** | **1.8176** ✓ (step 2000) | **1.5169** ✓ (step 2000) | 1.5146 (step 4000) | 1.5267 (step 2500) | **2** |
+| **CustomV2** | 1.8437 (step 2000) | 1.5397 (step 2000) | **1.4887** ✓ (step 4000) | **1.5246** ✓ (step 2500) | **2** |
+| **CustomV3** | 1.8687 (step 2000) | 1.5449 (step 2000) | 1.4914 (step 4000) | 1.5485 (step 3500) | **0** |
+| **GELU** | 1.9061 (step 2000) | 1.5411 (step 2000) | 1.5025 (step 4000) | 1.5281 (step 2500) | **0** |
 
 **Training Configuration:**
 - 4-Layer and 8-Layer models: trained for 2000 iterations total
@@ -114,4 +114,5 @@ With early stopping enabled, **CustomV2** provides the most reliable validation 
 Source Log Files:
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
+
 
