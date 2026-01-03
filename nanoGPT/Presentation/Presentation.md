@@ -1,6 +1,6 @@
 # CustomV2: An Activation Function That Wins Under Early Stopping
 
-We evaluate four activation functions across multiple model depths, measuring training and validation loss under early stopping. The results show that **CustomV2** matches or outperforms common activations such as **GELU** and **SwiGLU**, and notably achieves the best validation checkpoints for medium-to-deep models when early stopping is applied.
+We evaluated four activation functions across multiple model depths, measuring training and validation loss under early stopping. The results show that **CustomV2** matches or outperforms common activations such as **GELU** and **SwiGLU**, and notably achieves the best validation checkpoints for medium-to-deep models when early stopping is applied.
 
 
 ## Activation Function Performance Overview (Early Stop Implemented)
@@ -16,6 +16,8 @@ We evaluate four activation functions across multiple model depths, measuring tr
 - 4-Layer and 8-Layer models: trained for 2000 iterations total
 - 6-Layer model: trained for 4000 iterations total
 - 12-Layer model: trained for 8000 iterations total
+
+The table shows that **CustomV2** achieves the lowest validation loss at both 6 layers (4000 iterations) and 12 layers (8000 iterations), outperforming standard activations such as **GELU** and **SwiGLU** at these depths under early stopping.
 
 <br> <br> 
 
@@ -112,3 +114,4 @@ With early stopping enabled, **CustomV2** provides the most reliable validation 
 Source Log Files:
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
+
