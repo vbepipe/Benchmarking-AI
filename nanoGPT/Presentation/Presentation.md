@@ -1,3 +1,7 @@
+# CustomV2: An Activation Function That Wins Under Early Stopping
+
+We evaluate four activation functions across multiple model depths, measuring training and validation loss under early stopping. The results show that **CustomV2** matches or outperforms common activations such as **GELU** and **SwiGLU**, and notably achieves the best validation checkpoints for medium-to-deep models when early stopping is applied.
+
 
 ## Activation Function Performance Overview (Early Stop Implemented)
 
@@ -13,27 +17,32 @@
 - 6-Layer model: trained for 4000 iterations total
 - 12-Layer model: trained for 8000 iterations total
 
+<br> <br> 
 
----
-
-## 4 Layers 2000 iterations
 ![Training_and_Validation_Loss_for_different_activation_functions_with_4_Layers](https://raw.githubusercontent.com/vbepipe/Benchmarking-AI/refs/heads/main/nanoGPT/images/Training_and_Validation_Loss_for_different_activation_functions_with_4_Layers.png)
 
-
-## 8 Layers 2000 iterations
-![Training_and_Validation_Loss_for_different_activation_functions_with_8_Layers](https://raw.githubusercontent.com/vbepipe/Benchmarking-AI/refs/heads/main/nanoGPT/images/Training_and_Validation_Loss_for_different_activation_functions_with_8_Layers.png)
-
-
-## 6 Layers 4000 iterations
-![Training_and_Validation_Loss_for_different_activation_functions_with_6_Layers](https://raw.githubusercontent.com/vbepipe/Benchmarking-AI/refs/heads/main/nanoGPT/images/Training_and_Validation_Loss_for_different_activation_functions_with_6_Layers.png)
-
-
-## 12 Layers 8000 iterations
-![Training_and_Validation_Loss_for_different_activation_functions_with_12_Layers](https://raw.githubusercontent.com/vbepipe/Benchmarking-AI/refs/heads/main/nanoGPT/images/Training_and_Validation_Loss_for_different_activation_functions_with_12_Layers.png)
-
-
+<h3 align="center">4 Layers; 2000 iterations (above graph)</h3>
 
 ---
+
+![Training_and_Validation_Loss_for_different_activation_functions_with_8_Layers](https://raw.githubusercontent.com/vbepipe/Benchmarking-AI/refs/heads/main/nanoGPT/images/Training_and_Validation_Loss_for_different_activation_functions_with_8_Layers.png)
+
+<h3 align="center">8 Layers; 2000 iterations (above graph)</h3>
+
+---
+
+![Training_and_Validation_Loss_for_different_activation_functions_with_6_Layers](https://raw.githubusercontent.com/vbepipe/Benchmarking-AI/refs/heads/main/nanoGPT/images/Training_and_Validation_Loss_for_different_activation_functions_with_6_Layers.png)
+
+<h3 align="center">6 Layers; 4000 iterations (above graph)</h3>
+
+---
+
+![Training_and_Validation_Loss_for_different_activation_functions_with_12_Layers](https://raw.githubusercontent.com/vbepipe/Benchmarking-AI/refs/heads/main/nanoGPT/images/Training_and_Validation_Loss_for_different_activation_functions_with_12_Layers.png)
+
+<h3 align="center">12 Layers; 8000 iterations (above graph)</h3>
+
+
+<br> <br>
 
 
 ## Activation Function Analysis (With Early Stopping)
@@ -95,7 +104,8 @@
 
 ## Critical Recommendation 
 
-**With early stopping enabled**: Use **CustomV2** where stable training dynamics and optimal checkpoint timing provide advantages. CustomV3's overfitting resistance becomes unnecessary with proper early stopping, making it the less practical choice despite its theoretical stability benefits.
+With early stopping enabled, **CustomV2** provides the most reliable validation checkpoints in medium and deep architectures. While CustomV3 offers improved resistance to overfitting in longer training regimes, this advantage is largely neutralized when training is stopped at optimal validation points.
+
 
 ---
 
