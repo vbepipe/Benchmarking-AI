@@ -1,4 +1,8 @@
-# CustomV2: An Activation Function That Wins Under Early Stopping
+**New Benchmark Result with New Winner is now available here: <br> https://github.com/vbepipe/Benchmarking-AI/blob/main/nanoGPT/Presentation/Presentation-Custom18-VictoryGLU.md**
+
+Below should now be considered deprecated.
+
+# CustomV2: An Activation Function That Wins Under Early Stopping 
 
 We evaluated four activation functions across multiple model depths, measuring training and validation loss under early stopping. The results show that **CustomV2** matches or outperforms common activations such as **GELU** and **SwiGLU**, and notably achieves the best validation checkpoints for medium-to-deep models when early stopping is applied.
 
@@ -114,6 +118,7 @@ With early stopping enabled, **CustomV2** provides the most reliable validation 
 Source Log Files:
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
+
 
 
 
