@@ -1,6 +1,6 @@
 **New Benchmark Result with New Winner is now available here: <br> https://github.com/vbepipe/Benchmarking-AI/blob/main/nanoGPT/Presentation/Presentation-Custom18-VictoryGLU.md**
 
-Below should now be considered deprecated.
+*Below mentioned benchmark results should now be considered obsolete.*
 
 # CustomV2: An Activation Function That Wins Under Early Stopping 
 
@@ -118,6 +118,7 @@ With early stopping enabled, **CustomV2** provides the most reliable validation 
 Source Log Files:
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
+
 
 
 
