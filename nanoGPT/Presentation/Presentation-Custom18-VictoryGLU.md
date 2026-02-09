@@ -90,7 +90,7 @@ However, **CustomV2** remains a valid alternative for specific mid-depth archite
 
 ---
 
-Source Code:
+## **Source Code**
 ```
 ### Snippet of Python code Below 
 ### Developed by Vinayak Patel 
@@ -167,3 +167,4 @@ Log Files:
 
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
+
