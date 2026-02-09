@@ -90,6 +90,80 @@ However, **CustomV2** remains a valid alternative for specific mid-depth archite
 
 ---
 
-Source Log Files:
+Source Code:
+```
+### Snippet of Python code Below 
+### Developed by Vinayak Patel 
+### Social Link: https://x.com/vinayakchronicl 
+### I don't read messages on x.com so tag me using @vinayakchronicl
+
+class CustomActivationByVinayak(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.name = self.__class__.__name__
+        self.global_vinayak_a = (8 * (torch.pi - 3)) / (3 * torch.pi * (4 - torch.pi))
+    def forward(self, x):
+        x2 = x * x
+        erf_v = torch.sign(x) * (1 - (1 / (1 + self.global_vinayak_a * x2)) * torch.exp(-x2))
+        vn = ((erf_v + 1) * 0.5) * x
+        return torch.where( x < 0, vn, x )
+
+
+class SwiGLUMLP(nn.Module):
+    def __init__(self, config, multiple_of=64):
+        super().__init__()
+
+        # Standard FFN size
+        d_ffn = 4 * config.n_embd
+
+        # SwiGLU hidden dim for parameter parity:
+        # h = 2/3 * d_ffn  (≈ 8/3 * n_embd)
+        hidden_dim = int(2 * d_ffn / 3)
+
+        # Round for hardware efficiency (optional but recommended)
+        hidden_dim = multiple_of * ((hidden_dim + multiple_of - 1) // multiple_of)
+
+        # Single projection → split into gate + value
+        self.c_fc = nn.Linear(
+            config.n_embd,
+            2 * hidden_dim,
+            bias=config.bias
+        )
+
+        self.c_proj = nn.Linear(
+            hidden_dim,
+            config.n_embd,
+            bias=config.bias
+        )
+
+        self.dropout = nn.Dropout(config.dropout)
+
+    def forward(self, x):
+        gate, value = self.c_fc(x).chunk(2, dim=-1)
+        x = CustomActivationByVinayak()(gate) * F.silu(value)
+        x = self.c_proj(x)
+        x = self.dropout(x)
+        return x
+
+
+
+class Block(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        self.ln_1 = LayerNorm(config.n_embd, bias=config.bias)
+        self.attn = CausalSelfAttention(config)
+        self.ln_2 = LayerNorm(config.n_embd, bias=config.bias)
+        #self.mlp = MLP(config)
+        self.mlp = SwiGLUMLP(config)
+
+    def forward(self, x):
+        x = x + self.attn(self.ln_1(x))
+        x = x + self.mlp(self.ln_2(x))
+        return x
+
+```
+
+Log Files:
+
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
