@@ -6,7 +6,7 @@ We evaluated five activation functions across multiple model depths, measuring t
 
 ### Why It Outperforms SwiGLU
 
-Standard SwiGLU uses identical activations for both gate and value paths. Custom18 VictoryGLU's innovation is the **heterogeneous gating strategy**: the ERF-based gate provides smooth, bounded modulation for negative signals while maintaining linear efficiency for positive signals, creating a more adaptive information flow than homogeneous SwiGLU gating.
+Standard SwiGLU applies Swish to the gate path while leaving the value path linear. Custom18 VictoryGLU's innovation is the **heterogeneous gating strategy**: the ERF-based gate provides smooth, bounded modulation for negative signals while maintaining linear efficiency for positive signals, creating a more adaptive information flow than homogeneous SwiGLU gating.
 
 ---
 
@@ -218,6 +218,7 @@ Full experiment logs and data available at:
 ---
 
 <br> 
+
 
 
 
