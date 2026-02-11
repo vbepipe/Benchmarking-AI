@@ -1,12 +1,30 @@
 # Custom18 VictoryGLU: A New Benchmark in Activation Performance
 
-We evaluated five activation functions across multiple model depths, measuring training and validation loss under early stopping. The results demonstrate that **Custom18 VictoryGLU** (referred to as **CustomActivationByVinayak** in source code mentioned below) is the superior choice, securing the best validation loss in **3 out of 4** model configurations, effectively dethroning SwiGLU in shallow networks and CustomV2 in deep networks.
+We evaluated five activation functions across multiple model depths, measuring training and validation loss under early stopping. The results demonstrate that **Custom18 VictoryGLU** (referred to as **`CustomActivationByVinayak`** in source code mentioned below) is the superior choice, securing the best validation loss, consistently beats SwiGLU in 4/4 tested depths (Shallow, Medium, and Deep).
 
 ---
 
 ### Why It Outperforms SwiGLU
 
-Standard SwiGLU applies Swish to the gate path while leaving the value path linear. Custom18 VictoryGLU's innovation is the **heterogeneous gating strategy**: the ERF-based gate provides smooth, bounded modulation for negative signals while maintaining linear efficiency for positive signals, creating a more adaptive information flow than homogeneous SwiGLU gating.
+Standard SwiGLU applies a nonlinear Swish/Sigmoid-like gating to one path and a linear projection to the other. Concretely, the canonical SwiGLU pattern is:
+
+```text
+SwiGLU(x) = (x W_v) ⊙ silu(x W_g)
+```
+
+—that is, a *linear* value stream multiplied elementwise by a *Swish (silu) gate*.
+
+**What VictoryGLU does differently:** Custom18 VictoryGLU replaces the single-activation gate used in **SwiGLU** with a piecewise ERF-based (heterogeneous) gate while keeping a Swish (silu) value stream. In other words, the gate itself is heterogeneous: 
+
+* For **positive inputs**, the gate behaves like an identity (linear pass-through), preserving efficiency for signals that should be transmitted as-is.
+* For **negative inputs**, the gate applies a smooth, bounded ERF-based modulation, which provides nonlinearity and stable gradients in the negative regime.
+
+```text
+Let u = x W_g and v = x W_v. Then
+output = g(u) ⊙ silu(v),
+where
+g(u) = { 0.5*(erf(u)+1)*u  if u < 0;  u  otherwise }.
+```
 
 ---
 
@@ -120,7 +138,7 @@ The table shows that **Custom18 VictoryGLU** dominates the field, achieving the 
 - **Baseline Stability**: Predictable behavior, but offers no performance advantage.
 
 **Weaknesses:**
-- **Obsolete**: Consistently the worst or near-worst performer across all depths. There is no statistical reason to prefer GELU over VictoryGLU or SwiGLU in this benchmark.
+- **Weak Performance**: Weak performance across all depths. 
 
 ---
 
@@ -128,7 +146,8 @@ The table shows that **Custom18 VictoryGLU** dominates the field, achieving the 
 
 **Custom18 VictoryGLU** is the clear recommendation for general-purpose training, providing the best validation loss in the majority of configurations (Shallow, Medium, and Deep). 
 
-Use **Custom18 VictoryGLU** as the default choice for all production systems. 
+**Custom18 VictoryGLU** is the default choice for most production systems. But it is still recommended to perform additional sweeps and multiple seeds to confirm these results more robustly. 
+
 
 ---
 
@@ -141,6 +160,12 @@ Use **Custom18 VictoryGLU** as the default choice for all production systems.
 
 
 class CustomActivationByVinayak(nn.Module):
+    """
+    Piecewise ERF-based gate:
+      - for x >= 0: identity (linear pass-through)
+      - for x <  0: 0.5*(erf_approx(x)+1) * x  (smooth bounded modulation)
+    Uses Abramowitz–Stegun approximation for erf for speed.
+    """
     def __init__(self):
         super().__init__()
         self.name = self.__class__.__name__
@@ -218,6 +243,7 @@ Full experiment logs and data available at:
 ---
 
 <br> 
+
 
 
 
