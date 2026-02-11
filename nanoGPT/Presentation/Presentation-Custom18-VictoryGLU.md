@@ -4,7 +4,7 @@ We evaluated five activation functions across multiple model depths, measuring t
 
 ---
 
-## 🔬 Technical Architecture
+## Technical Architecture
 
 ### Mathematical Foundation
 
@@ -65,7 +65,7 @@ The table shows that **Custom18 VictoryGLU** dominates the field, achieving the 
 
 <br> 
 
-## 📊 Activation Function Performance Overview (Early Stop Implemented)
+## Activation Function Performance Overview (Early Stop Implemented)
 
 ### Custom18 VictoryGLU Analysis
 
@@ -124,7 +124,7 @@ The table shows that **Custom18 VictoryGLU** dominates the field, achieving the 
 
 ---
 
-## 💡 Recommendation 
+## Recommendation 
 
 **Custom18 VictoryGLU** is the clear recommendation for general-purpose training, providing the best validation loss in the majority of configurations (Shallow, Medium, and Deep). 
 
@@ -132,7 +132,7 @@ However, **CustomV2** remains a valid alternative for specific mid-depth archite
 
 ---
 
-## 💻 Source Code
+## Source Code
 ```
 ### Snippet of Python code Below 
 ### Developed by Vinayak Patel 
@@ -209,7 +209,7 @@ class Block(nn.Module):
 
 ---
 
-## 📁 Log Files
+## Log Files
 
 Full experiment logs and data available at:
 
@@ -218,5 +218,6 @@ Full experiment logs and data available at:
 ---
 
 <br> 
+
 
 
