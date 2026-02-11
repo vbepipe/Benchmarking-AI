@@ -1,6 +1,6 @@
 # Custom18 VictoryGLU: A New Benchmark in Activation Performance
 
-We evaluated five activation functions across multiple model depths, measuring training and validation loss under early stopping. The results demonstrate that **Custom18 VictoryGLU** (referred to as **`CustomActivationByVinayak`** in source code mentioned below) is the superior choice, securing the best validation loss, consistently beats SwiGLU in 4/4 tested depths (Shallow, Medium, and Deep).
+We evaluated five activation functions across multiple model depths, measuring training and validation loss under early stopping. The results demonstrate that **Custom18 VictoryGLU** (referred to as **`CustomActivationByVinayak`** in source code mentioned below) is the superior choice, securing the best validation loss in 3 of 4 model configurations, and **consistently outperforms SwiGLU** in 4/4 tested depths (Shallow, Medium, and Deep).
 
 ---
 
@@ -19,11 +19,20 @@ SwiGLU(x) = (x W_v) ⊙ silu(x W_g)
 * For **positive inputs**, the gate behaves like an identity (linear pass-through), preserving efficiency for signals that should be transmitted as-is.
 * For **negative inputs**, the gate applies a smooth, bounded ERF-based modulation, which provides nonlinearity and stable gradients in the negative regime.
 
+Let
+
 ```text
-Let u = x W_g and v = x W_v. Then
+u = x W_g     (gate pre-activation)
+v = x W_v     (value pre-activation)
+```
+
+Then
+
+```text
 output = g(u) ⊙ silu(v),
 where
-g(u) = { 0.5*(erf(u)+1)*u  if u < 0;  u  otherwise }.
+g(u) = { 0.5*(erf_approx(u)+1)*u   if u < 0
+         u                          otherwise }.
 ```
 
 ---
@@ -243,6 +252,7 @@ Full experiment logs and data available at:
 ---
 
 <br> 
+
 
 
 
