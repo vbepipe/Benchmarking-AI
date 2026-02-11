@@ -2,6 +2,48 @@
 
 We evaluated five activation functions across multiple model depths, measuring training and validation loss under early stopping. The results demonstrate that **Custom18 VictoryGLU** (referred to as **CustomActivationByVinayak** in source code mentioned below) is the superior choice, securing the best validation loss in **3 out of 4** model configurations, effectively dethroning SwiGLU in shallow networks and CustomV2 in deep networks.
 
+---
+
+## 🔬 Technical Architecture
+
+### Mathematical Foundation
+
+Custom18 VictoryGLU implements a hybrid ERF-based activation function with asymmetric behavior:
+
+**Core Formula:**
+
+```math
+f(x) = \begin{cases} 
+\frac{\text{erf}_v(x) + 1}{2} \cdot x & \text{if } x < 0 \\ 
+x & \text{if } x \geq 0 
+\end{cases}
+```
+
+Where the ERF approximation uses the Abramowitz-Stegun constant:
+
+```math
+a = \frac{8(\pi - 3)}{3\pi(4 - \pi)} \approx 0.147
+```
+
+### Key Design Principles
+
+#### Asymmetric Gating Mechanism
+- **Positive inputs**: Linear pass-through (ReLU-like behavior) for computational efficiency
+- **Negative inputs**: Smooth ERF-based scaling prevents dying ReLU problem while maintaining gradient flow
+- **Dual activation**: Gate path uses `CustomActivationByVinayak()`, value path uses `F.silu()` (Swish)
+
+#### Architectural Advantages
+- **Zero-centered smoothness**: Avoids vanishing gradients in deep networks through differentiable negative region
+- **Non-trainable parameters**: Fixed constant reduces overfitting risk and maintains consistency across training
+- **Hardware optimization**: Hidden dimensions rounded to multiples of 64 for GPU/TPU efficiency
+- **Parameter parity**: Uses `h = (2/3) * d_ffn` to match standard FFN parameter counts while implementing gating
+
+### Why It Outperforms SwiGLU
+
+Standard SwiGLU uses identical activations for both gate and value paths. Custom18 VictoryGLU's innovation is the **heterogeneous gating strategy**: the ERF-based gate provides smooth, bounded modulation for negative signals while maintaining linear efficiency for positive signals, creating a more adaptive information flow than homogeneous SwiGLU gating.
+
+---
+
 ## Activation Function Performance Overview (Early Stop Implemented)
 
 | Activation | 4-Layer Val<br>(2000 iters) | 8-Layer Val<br>(2000 iters) | 6-Layer Val<br>(4000 iters) | 12-Layer Val<br>(8000 iters) | Winner Count |
@@ -23,7 +65,7 @@ The table shows that **Custom18 VictoryGLU** dominates the field, achieving the 
 
 <br> 
 
-## Activation Function Analysis (With Early Stopping)
+## 📊 Activation Function Performance Overview (Early Stop Implemented)
 
 ### Custom18 VictoryGLU Analysis
 
@@ -82,7 +124,7 @@ The table shows that **Custom18 VictoryGLU** dominates the field, achieving the 
 
 ---
 
-## Recommendation 
+## 💡 Recommendation 
 
 **Custom18 VictoryGLU** is the clear recommendation for general-purpose training, providing the best validation loss in the majority of configurations (Shallow, Medium, and Deep). 
 
@@ -90,7 +132,7 @@ However, **CustomV2** remains a valid alternative for specific mid-depth archite
 
 ---
 
-## **Source Code**
+## 💻 Source Code
 ```
 ### Snippet of Python code Below 
 ### Developed by Vinayak Patel 
@@ -163,9 +205,18 @@ class Block(nn.Module):
 
 ```
 
-Log Files:
+<br> 
 
+---
+
+## 📁 Log Files
+
+Full experiment logs and data available at:
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
+
+---
+
+<br> 
 
 
