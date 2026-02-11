@@ -38,6 +38,8 @@ a = \frac{8(\pi - 3)}{3\pi(4 - \pi)} \approx 0.147
 - **Hardware optimization**: Hidden dimensions rounded to multiples of 64 for GPU/TPU efficiency
 - **Parameter parity**: Uses `h = (2/3) * d_ffn` to match standard FFN parameter counts while implementing gating
 
+---
+
 ### Why It Outperforms SwiGLU
 
 Standard SwiGLU uses identical activations for both gate and value paths. Custom18 VictoryGLU's innovation is the **heterogeneous gating strategy**: the ERF-based gate provides smooth, bounded modulation for negative signals while maintaining linear efficiency for positive signals, creating a more adaptive information flow than homogeneous SwiGLU gating.
@@ -61,9 +63,7 @@ Standard SwiGLU uses identical activations for both gate and value paths. Custom
 
 The table shows that **Custom18 VictoryGLU** dominates the field, achieving the lowest validation loss in shallow (4-layer), medium (8-layer), and deep (12-layer) architectures. **CustomV2** remains a strong contender, holding the record for the 6-layer configuration.
 
----
-
-<br> 
+--- 
 
 ## Activation Function Performance Overview (Early Stop Implemented)
 
@@ -127,8 +127,6 @@ The table shows that **Custom18 VictoryGLU** dominates the field, achieving the 
 ## Recommendation 
 
 **Custom18 VictoryGLU** is the clear recommendation for general-purpose training, providing the best validation loss in the majority of configurations (Shallow, Medium, and Deep). 
-
-However, **CustomV2** remains a valid alternative for specific mid-depth architectures (e.g., 6 layers), where it demonstrated a unique advantage. For all other cases, VictoryGLU provides the most reliable and performant results.
 
 ---
 
@@ -205,8 +203,6 @@ class Block(nn.Module):
 
 ```
 
-<br> 
-
 ---
 
 ## Log Files
@@ -218,6 +214,7 @@ Full experiment logs and data available at:
 ---
 
 <br> 
+
 
 
 
