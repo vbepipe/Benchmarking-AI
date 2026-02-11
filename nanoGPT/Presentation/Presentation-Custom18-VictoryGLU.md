@@ -1,6 +1,6 @@
 # Custom18 VictoryGLU: A New Benchmark in Activation Performance
 
-We evaluated five activation functions across multiple model depths, measuring training and validation loss under early stopping. The results demonstrate that **Custom18 VictoryGLU** is the superior choice, securing the best validation loss in **3 out of 4** model configurations, effectively dethroning SwiGLU in shallow networks and CustomV2 in deep networks.
+We evaluated five activation functions across multiple model depths, measuring training and validation loss under early stopping. The results demonstrate that **Custom18 VictoryGLU** (referred to as **CustomActivationByVinayak** in source code mentioned below) is the superior choice, securing the best validation loss in **3 out of 4** model configurations, effectively dethroning SwiGLU in shallow networks and CustomV2 in deep networks.
 
 ## Activation Function Performance Overview (Early Stop Implemented)
 
@@ -97,6 +97,7 @@ However, **CustomV2** remains a valid alternative for specific mid-depth archite
 ### Social Link: https://x.com/vinayakchronicl 
 ### I don't read messages on x.com so tag me using @vinayakchronicl
 
+
 class CustomActivationByVinayak(nn.Module):
     def __init__(self):
         super().__init__()
@@ -146,7 +147,6 @@ class SwiGLUMLP(nn.Module):
         return x
 
 
-
 class Block(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -167,4 +167,5 @@ Log Files:
 
 
 [https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT](https://github.com/vbepipe/Benchmarking-AI/tree/main/nanoGPT)
+
 
