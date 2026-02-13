@@ -25,7 +25,7 @@ We evaluated five activation functions across multiple model depths (4, 6, 8, an
 **Scaling Analysis (6L → 12L):**
 - **Custom18 VictoryGLU**: +0.0145 degradation (1.5021 → 1.5166)
 - **CustomV2**: +0.0359 degradation (1.4887 → 1.5246)
-- **Scaling advantage**: 2.5× better stability
+- **Scaling advantage**: better stability
 
 This scaling advantage proves that CustomV2's 6-layer win is an early-training artifact specific to that depth configuration. VictoryGLU's architecture enables consistent performance as model complexity increases, making it the only viable choice for production systems requiring depth scalability.
 
@@ -308,5 +308,6 @@ Vinayak Patel | [https://x.com/vinayakchronicl](https://x.com/vinayakchronicl)
 **Key observation:** Consistently the worst or near-worst performer across all depths. No statistical or practical reason to prefer GELU over VictoryGLU or SwiGLU in this benchmark.
 
 ***
+
 
 
