@@ -123,7 +123,7 @@ a = \frac{8(\pi - 3)}{3\pi(4 - \pi)} \approx 0.147
 ## Implementation
 ### Core Activation Function
 
-In nanoGPT project, replace **`Block`** class in `model.py` with below given code.
+In **nanoGPT project**, replace **`Block`** class in `model.py` with below given code.
 
 ```python
 
@@ -308,4 +308,5 @@ Vinayak Patel | [https://x.com/vinayakchronicl](https://x.com/vinayakchronicl)
 **Key observation:** Consistently the worst or near-worst performer across all depths. No statistical or practical reason to prefer GELU over VictoryGLU or SwiGLU in this benchmark.
 
 ***
+
 
