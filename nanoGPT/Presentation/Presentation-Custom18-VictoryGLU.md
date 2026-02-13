@@ -112,9 +112,6 @@ a = \frac{8(\pi - 3)}{3\pi(4 - \pi)} \approx 0.147
 - Production systems where consistent scaling behavior is critical
 - Any architecture currently using SwiGLU (direct drop-in replacement with improvements)
 
-**Avoid:**
-- CustomV2 for any system that may scale beyond 6 layers (poor scaling characteristics)
-
 **Special case:** CustomV2 may be considered for fixed 6-layer architectures where scaling is guaranteed never to occur, though VictoryGLU remains competitive at this depth (1.5021 vs 1.4887, a 0.9% difference).
 
 ***
@@ -307,6 +304,7 @@ Vinayak Patel | [https://x.com/vinayakchronicl](https://x.com/vinayakchronicl)
 **Key observation:** Consistently the worst or near-worst performer across all depths. No statistical or practical reason to prefer GELU over VictoryGLU or SwiGLU in this benchmark.
 
 ***
+
 
 
 
