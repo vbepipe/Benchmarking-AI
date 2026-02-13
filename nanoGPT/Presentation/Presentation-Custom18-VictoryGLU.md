@@ -1,5 +1,5 @@
 # Custom18 VictoryGLU: A New Benchmark in Activation Performance
-We evaluated five activation functions across multiple model depths (4, 6, 8, and 12 layers) on language modeling tasks using the Shakespeare dataset, measuring training and validation loss under early stopping. **Custom18 VictoryGLU** (implemented as `CustomActivationByVinayak` in the source code) is the superior choice, securing the best validation loss in **3 of 4** model configurations and **consistently outperforming SwiGLU in all 4 tested depths** (shallow, medium, and deep architectures).
+We evaluated five activation functions across multiple model depths (4, 6, 8, and 12 layers) on language modeling tasks using **nanoGPT Project** (Shakespeare dataset), measuring training and validation loss under early stopping. **Custom18 VictoryGLU** (implemented as `CustomActivationByVinayak` in the source code) is the superior choice, securing the best validation loss in **3 of 4** model configurations and **consistently outperforming both leaders GELU & SwiGLU in all 4 tested depths** (shallow, medium, and deep architectures).
 
 ***
 
@@ -20,7 +20,7 @@ We evaluated five activation functions across multiple model depths (4, 6, 8, an
 ---
 
 ## Key Finding: Superior Scaling Characteristics
-**Custom18 VictoryGLU demonstrates 2.5× better scaling performance than CustomV2.** While CustomV2 achieves the lowest loss at 6 layers (1.4887), this advantage completely vanishes as models scale to 12 layers:
+**Custom18 VictoryGLU demonstrates better scaling performance.** While CustomV2 achieves the lowest loss at 6 layers with 4000 iterations (1.4887), this advantage completely vanishes as models scales 2x to 12 layers with 8000 iterations:
 
 **Scaling Analysis (6L → 12L):**
 - **Custom18 VictoryGLU**: +0.0145 degradation (1.5021 → 1.5166)
@@ -308,3 +308,4 @@ Vinayak Patel | [https://x.com/vinayakchronicl](https://x.com/vinayakchronicl)
 **Key observation:** Consistently the worst or near-worst performer across all depths. No statistical or practical reason to prefer GELU over VictoryGLU or SwiGLU in this benchmark.
 
 ***
+
