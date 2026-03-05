@@ -10,7 +10,7 @@ The T4 has 40 SMs with Compute Capability 7.5 (Turing), supporting up to 1024 th
 ## Phase 1 vs Phase 1b - Pinned Memory Impact
 Pinned memory delivers **no meaningful gain below n=10,000** (0.97-1.01×) because the fixed CUDA driver overhead (~1.3 ms) completely overwhelms the transfer itself. The gains only emerge where data volume becomes large enough for the DMA bandwidth difference to matter - **1.25× at n=100k, 1.58× at n=1M, 1.42× at n=10M**. The slight dip to 1.42× at 10M (vs 1.58× at 1M) is because at very large sizes, PCIe bandwidth saturation starts affecting both pageable and pinned transfers, narrowing the gap.
 
-![Pinned vs Pageable Memory Speedup](Generated_chart__pinned_gain.png)
+![Pinned vs Pageable Memory Speedup](https://github.com/vbepipe/Benchmarking-AI/blob/main/CUDA-GPU-Benchmarks/images/Generated_chart__pinned_gain.png)
 
 ***
 ## Phase 2 - Kernel Ceiling
@@ -49,6 +49,8 @@ The progression toward the 87× kernel ceiling as array size grows is clear:
 
 The batch-resident strategy at n=10M recovers **90% of the theoretical kernel-ceiling speedup** in a real end-to-end scenario - the remaining 10% gap is the amortised PCIe cost of the one-time transfer divided across 100 runs.
 
-![GPU Speedup over CPU](Generated_chart__speedup_all.png)
+![GPU Speedup over CPU](https://github.com/vbepipe/Benchmarking-AI/blob/main/CUDA-GPU-Benchmarks/images/Generated_chart__speedup_all.png)
 
-![ALL Execution Paths: Latency per Call (log scale)](Generated_chart__all_paths_latency.png)
+![ALL Execution Paths: Latency per Call (log scale)](https://github.com/vbepipe/Benchmarking-AI/blob/main/CUDA-GPU-Benchmarks/images/Generated_chart__all_paths_latency.png)
+
+
