@@ -1,0 +1,3 @@
+Generated_chart__all_paths_latency.png
+Generated_chart__speedup_all.png
+Generated_chart__pinned_gain.png
