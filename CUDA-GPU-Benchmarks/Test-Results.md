@@ -1,3 +1,4 @@
+# 78× Speedup Without Changing Your Code: A Practical CUDA Benchmarking Playbook
 
 Here is a complete breakdown of every phase of the notebook showcasing cuda performance: <br>
 [https://github.com/vbepipe/Benchmarking-AI/blob/main/CUDA-GPU-Benchmarks/cuda-performance-benchmark.ipynb](https://github.com/vbepipe/Benchmarking-AI/blob/main/CUDA-GPU-Benchmarks/cuda-performance-benchmark.ipynb)
